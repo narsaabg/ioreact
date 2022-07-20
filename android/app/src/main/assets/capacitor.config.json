@@ -1,0 +1,6 @@
+{
+	"appId": "i.love.ionic",
+	"appName": "ioreact",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

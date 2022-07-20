@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "566741703944",
+    "project_id": "ionic-test-21bd6",
+    "storage_bucket": "ionic-test-21bd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566741703944:android:3c487630482509e446a0bd",
+        "android_client_info": {
+          "package_name": "i.love.ionic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566741703944-u3p3nll9dg66j3vn1anv49e9trb2hegu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGspIxhlOkcMgX3_O4PUHFSyswUH3a6fA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566741703944-u3p3nll9dg66j3vn1anv49e9trb2hegu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
