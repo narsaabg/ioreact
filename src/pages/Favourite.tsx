@@ -1,19 +1,19 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Home.css';
+import './Favourite.css';
 
-const Home: React.FC = () => {
+const Favourite: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Quotes</IonTitle>
+          <IonTitle>Favourite</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
+            <IonTitle size="large">Favourite</IonTitle>
           </IonToolbar>
         </IonHeader>
       </IonContent>
@@ -21,4 +21,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Favourite;

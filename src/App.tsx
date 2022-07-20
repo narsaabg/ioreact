@@ -1,7 +1,10 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonRouterOutlet, setupIonicReact,IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge  } from '@ionic/react';
+import {heart,home,menu} from 'ionicons/icons';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import Categories from './pages/Categories';
+import Favourite from './pages/Favourite';
 import PushNotificationsContainer from './Notifications';
 
 /* Core CSS required for Ionic components to work properly */
@@ -28,17 +31,43 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+        <IonTabs>
       <IonRouterOutlet>
         <Route exact path="/home">
           <Home />
+        </Route>
+        <Route exact path="/categories">
+          <Categories />
+        </Route>
+        <Route exact path="/favourite">
+          <Favourite />
         </Route>
         <Route exact path="/notification">
           <PushNotificationsContainer />
         </Route>
         <Route exact path="/">
-          <Redirect to="/notification" />
+          <Redirect to="/home" />
         </Route>
       </IonRouterOutlet>
+
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="home" href="/home">
+          <IonIcon icon={home} />
+          <IonLabel>home</IonLabel>
+          {/*<IonBadge>6</IonBadge>*/}
+        </IonTabButton>
+        <IonTabButton tab="categories" href="/categories">
+          <IonIcon icon={menu} />
+          <IonLabel>Categories</IonLabel>
+          {/*<IonBadge>6</IonBadge>*/}
+        </IonTabButton>
+        <IonTabButton tab="favourite" href="/favourite">
+          <IonIcon icon={heart} />
+          <IonLabel>Favourite</IonLabel>
+          {/*<IonBadge>6</IonBadge>*/}
+        </IonTabButton>
+      </IonTabBar>
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
