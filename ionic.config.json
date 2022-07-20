@@ -1,0 +1,7 @@
+{
+  "name": "ioreact",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
