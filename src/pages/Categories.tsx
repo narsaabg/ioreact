@@ -1,9 +1,26 @@
-import { IonContent, IonHeader,IonCard,IonCardContent, IonPage,IonGrid, IonTitle,IonRow, IonCol,IonToolbar,IonRefresherContent,IonRefresher } from '@ionic/react';
+
 import {chevronDownCircleOutline,copy,share} from 'ionicons/icons';
 import { RefresherEventDetail } from '@ionic/core';
 import './Categories.css';
 
 const Categories: React.FC = () => {
+
+  const CategoriesList=[{
+    id:'1',
+    img:'https://picsum.photos/200',
+  },
+  {
+    id:'2',
+    img:'https://picsum.photos/200',
+  },
+  {
+    id:'3',
+    img:'https://picsum.photos/200',
+  },
+  {
+    id:'4',
+    img:'https://picsum.photos/200',
+  }];
 
   const doRefresh=(event: CustomEvent<RefresherEventDetail>)=>{
     setTimeout(() => {
@@ -21,27 +38,7 @@ const Categories: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonContent>
-          <IonGrid>
-            <IonRow>
-              <IonCol size="4">
-                <IonCard class="welcome-card" >
-                <IonCardContent>
-                  <p>
-                    qui
-                  </p>
-                  <p>
-                    s
-                  </p>
-                </IonCardContent>
-                </IonCard>
-              </IonCol>
-              <IonCol size="4">ion-col size="3"</IonCol>
-              <IonCol size="4">ion-col size="3"</IonCol>
-              <IonCol size="4">ion-col size="3"</IonCol>
-              <IonCol size="4">ion-col size="3"</IonCol>
-              <IonCol size="4">ion-col size="3"</IonCol>
-            </IonRow>
-          </IonGrid>
+
         </IonContent>
       </IonContent>
     </IonPage>
