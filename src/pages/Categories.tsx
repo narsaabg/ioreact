@@ -1,4 +1,4 @@
-
+import { IonContent, IonHeader,IonImg ,IonCard,IonCardHeader,IonCardTitle,IonCardContent,IonCardSubtitle, IonGrid,IonPage,IonCol, IonRow,IonTitle, IonToolbar,IonRefresherContent,IonRefresher } from '@ionic/react';
 import {chevronDownCircleOutline,copy,share} from 'ionicons/icons';
 import { RefresherEventDetail } from '@ionic/core';
 import './Categories.css';
@@ -36,11 +36,35 @@ const Categories: React.FC = () => {
           <IonTitle>Categories</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+        <IonContent fullscreen>
         <IonContent>
-
+          <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
+            <IonRefresherContent
+              pullingIcon={chevronDownCircleOutline}
+              pullingText="Pull to refresh"
+              refreshingSpinner="circles"
+              refreshingText="Refreshing...">
+            </IonRefresherContent>
+          </IonRefresher>
+          <IonGrid>
+          <IonRow>
+          {
+            CategoriesList.map((item,index)=>(
+              <IonCol size="4" key={index}>
+                <IonCard>
+                  <IonCardContent className="card-content-img">
+                    <IonImg src={item.img} alt="test"/>
+                     <IonCardHeader className="card-header">
+                    <IonCardSubtitle>Motivation</IonCardSubtitle>
+                  </IonCardHeader>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+            ))
+          }
+          </IonRow>
+        </IonGrid>
         </IonContent>
-      </IonContent>
     </IonPage>
   );
 };
