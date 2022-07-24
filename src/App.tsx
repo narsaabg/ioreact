@@ -1,10 +1,11 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact,IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge  } from '@ionic/react';
-import {heart,home,menu} from 'ionicons/icons';
+import {heart,home,menu,add} from 'ionicons/icons';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Categories from './pages/Categories';
 import Favourite from './pages/Favourite';
+import Manage from './pages/Manage';
 import PushNotificationsContainer from './Notifications';
 
 /* Core CSS required for Ionic components to work properly */
@@ -42,6 +43,9 @@ const App: React.FC = () => (
         <Route exact path="/favourite">
           <Favourite />
         </Route>
+        <Route exact path="/manage">
+          <Manage />
+        </Route>
         <Route exact path="/notification">
           <PushNotificationsContainer />
         </Route>
@@ -64,6 +68,11 @@ const App: React.FC = () => (
         <IonTabButton tab="favourite" href="/favourite">
           <IonIcon icon={heart} />
           <IonLabel>Favourite</IonLabel>
+          {/*<IonBadge>6</IonBadge>*/}
+        </IonTabButton>
+         <IonTabButton tab="manage" href="/manage">
+          <IonIcon icon={add} />
+          <IonLabel>Manage</IonLabel>
           {/*<IonBadge>6</IonBadge>*/}
         </IonTabButton>
       </IonTabBar>

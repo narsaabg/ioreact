@@ -19,8 +19,6 @@ const Favourite: React.FC = () => {
   const [quotes,setQuotes] = useState<quote[]>([]);
 
   useEffect(()=>{
-
-
     getQuotes();
   },[]);
 
@@ -114,15 +112,15 @@ const Favourite: React.FC = () => {
             {
             quotes.map((item,index)=>(
                 <IonCard class="welcome-card" key={index}>
-                  <IonCardContent>
-                   <p>
-                      {item.quote}
-                    </p>
-                    <p>
-                      ~{item.author}
-                    </p>
+                  <IonCardContent className="quote-card-content">
+                   <p className="quote-text">
+                    {item.quote}
+                  </p>
+                  <p className="quote-author">
+                    ~{item.author}
+                  </p>
                   </IonCardContent>
-                  <IonListHeader style={{justifyContent: 'end'}}>
+                  <IonListHeader style={{justifyContent: 'end'}} className="quote-card-list-header">
                     <IonButton onClick={()=>unFavouriteBtn(item)}><IonIcon icon={heart} className='is-favourite'/></IonButton>
                     <IonButton onClick={()=>copyBtn(item)}><IonIcon icon={copy} /></IonButton>
                     <IonButton onClick={()=>shareBtn(item)}><IonIcon icon={share} /></IonButton>

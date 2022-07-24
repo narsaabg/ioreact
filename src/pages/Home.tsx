@@ -1,11 +1,12 @@
 import {useState,useEffect} from 'react'
-import { IonContent, IonHeader,IonButton,IonIcon, IonPage, IonTitle, IonListHeader,IonToolbar ,IonCard,IonCardContent} from '@ionic/react';
+import { IonContent, IonHeader,IonButton,IonLoading ,IonIcon, IonPage, IonTitle, IonListHeader,IonToolbar ,IonCard,IonCardContent} from '@ionic/react';
 import {heart,copy,share} from 'ionicons/icons';
 import './Home.css';
 import { Clipboard } from '@capacitor/clipboard';
 import { Share } from '@capacitor/share';
 import { Toast } from '@capacitor/toast';
 import { Storage } from '@capacitor/storage';
+import firebase from '../Firebase'
 
 type quote = {
   id: string;
@@ -17,12 +18,28 @@ const Home: React.FC = () => {
 
   const [favouriteArr,setFavouriteArr] = useState<any>([]);
   const [quotesArr,setQuotesArr] = useState<quote[]>([]);
+  const dbref = firebase.database().ref('quotzy/');
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(()=>{
     getQuotes();
-      isFavourite();
-
+    isFavourite();
+    getFireQuotes();
   },[]);
+
+  const getFireQuotes=async()=>{
+    const data = await dbref.once('value');
+    var Quotes:Array<any> = [];
+      data.forEach(function(DataSnapshot) {  
+        let key = DataSnapshot.key; 
+        let val = DataSnapshot.val(); 
+        Quotes.push({ id: key, quote: val.quote,author:val.author});
+        });
+      // setUsers(tutorials);
+      // console.log(tutorials)
+      setQuotesArr(Quotes);
+      setShowLoading(false);
+  }
 
   const getQuotes=()=>{
     console.log('loading quotes')
@@ -44,9 +61,10 @@ const Home: React.FC = () => {
           author:'Leonardo Da Vinci'
       }];
 
-      setQuotesArr(Quotes);
+      // setQuotesArr(Quotes);
   }
   
+
 
   const copyBtn=async (item:any)=>{
     var quote = item.quote+' ~'+item.author;
@@ -97,6 +115,7 @@ const Home: React.FC = () => {
         });
         favElem.add('is-favourite');
       }else{
+        console.log(savedArr)
         if(savedArr.length  > 0){
           let exist = false;
           savedArr.forEach((data:any)=>{
@@ -115,6 +134,7 @@ const Home: React.FC = () => {
 
           favElem.add('is-favourite');
         }else{
+          console.log('empty array');
           let savedArr = [];
           savedArr.push(item);
           await Storage.set({
@@ -173,7 +193,7 @@ const Home: React.FC = () => {
             key: 'favourite',
             value: JSON.stringify(savedArr),
           });
-      getQuotes();
+            getQuotes();
 
           return true;
         }else{
@@ -196,19 +216,25 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-      
-        {
+        <IonLoading
+            cssClass='my-custom-class'
+            isOpen={showLoading}
+            onDidDismiss={() => setShowLoading(false)}
+            message={'Loading..'}
+          />
+
+        { 
           quotesArr.map((item:any)=>(
               <IonCard class="welcome-card" key={item.id}>
-                <IonCardContent>
-                  <p>
+                <IonCardContent className="quote-card-content">
+                  <p className="quote-text">
                     {item.quote}
                   </p>
-                  <p>
+                  <p className="quote-author">
                     ~{item.author}
                   </p>
                 </IonCardContent>
-                <IonListHeader style={{justifyContent: 'end'}}>
+                <IonListHeader className="quote-card-list-header">
                   <IonButton onClick={()=>favouriteBtn(item)}><IonIcon icon={heart} id={'quote_'+item.id} className={checkFav(item.id) ? 'is-favourite' :''}/></IonButton>
                   <IonButton onClick={()=>copyBtn(item)}><IonIcon icon={copy} /></IonButton>
                   <IonButton onClick={()=>shareBtn(item)}><IonIcon icon={share} /></IonButton>
