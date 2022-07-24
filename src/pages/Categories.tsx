@@ -1,4 +1,5 @@
-
+import {useState,useEffect} from 'react'
+import { IonContent,IonLoading, IonHeader,IonImg ,IonCard,IonCardHeader,IonCardTitle,IonCardContent,IonCardSubtitle, IonGrid,IonPage,IonCol, IonRow,IonTitle, IonToolbar,IonRefresherContent,IonRefresher } from '@ionic/react';
 import {chevronDownCircleOutline,copy,share} from 'ionicons/icons';
 import { RefresherEventDetail } from '@ionic/core';
 import './Categories.css';
@@ -57,9 +58,24 @@ const Categories: React.FC = () => {
           <IonTitle>Categories</IonTitle>
         </IonToolbar>
       </IonHeader>
-        <IonContent fullscreen>
+      <IonContent fullscreen>
         <IonContent>
-
+          <IonLoading
+            cssClass='my-custom-class'
+            isOpen={showLoading}
+            onDidDismiss={() => setShowLoading(false)}
+            message={'Loading..'}
+          />
+          <IonGrid>
+          <IonRow>
+          { 
+            categories.map((item:any,index:any)=>(
+              <IonCol size="12" key={index}>
+                <IonCard>
+                  <IonCardContent className="card-content-img">
+                    <IonImg src={item.thumb} alt="test" className="cat-img"/>
+                     <IonCardHeader className="card-header">
+                    <IonCardSubtitle className="cat-name">{item.name}</IonCardSubtitle>
                   </IonCardHeader>
                   </IonCardContent>
                 </IonCard>
@@ -69,6 +85,7 @@ const Categories: React.FC = () => {
           </IonRow>
         </IonGrid>
         </IonContent>
+      </IonContent>
     </IonPage>
   );
 };
